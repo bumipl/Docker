@@ -1,6 +1,6 @@
-# How to run python3 app in docker?
+# How to run python3 GUI app in docker?
 
-### 1. Create app.py
+### 1. Create calculator.py
 
 ### 2. Create Dockerfile
 ```bash
