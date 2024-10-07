@@ -38,7 +38,7 @@ To get a local copy up and running, follow these simple steps.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/what-is-my-ip.git
+   git clone git@github.com:bumipl/Docker.git
    cd what-is-my-ip
    ```
 
