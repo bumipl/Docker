@@ -9,7 +9,6 @@ A simple Flask application that displays your public IP address. This applicatio
 - [Getting Started](#getting-started)
 - [Running the Application](#running-the-application)
 - [Project Structure](#project-structure)
-- [License](#license)
 
 ## Features
 
