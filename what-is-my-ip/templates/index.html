@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public IP Address</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .ip-address {
+            font-size: 24px;
+            color: #007BFF;
+        }
+        .refresh-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .refresh-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Public IP Address</h1>
+        <div class="ip-address" id="ip-address">Loading...</div>
+        <button class="refresh-button" onclick="fetchIP()">Refresh IP</button>
+    </div>
+    <script>
+        function fetchIP() {
+            fetch('/get_ip')  // Make sure this matches the Flask route
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ip) {
+                        document.getElementById('ip-address').innerText = data.ip;
+                    } else {
+                        document.getElementById('ip-address').innerText = 'Error fetching IP';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('ip-address').innerText = 'Error fetching IP';
+                });
+        }
+        // Fetch IP on page load
+        window.onload = fetchIP;
+    </script>
+</body>
+</html>
