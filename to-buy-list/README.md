@@ -20,6 +20,7 @@ The To-Buy List application is a simple web application built using Flask and Do
 
 ## Directory Structure
 
+```bash
 to-buy-list/
 ├── app/
 │   ├── requirements.txt
@@ -28,10 +29,7 @@ to-buy-list/
 │       └── index.html
 ├── Dockerfile
 └── docker-compose.yml
-
-Code
-
-Copy Code
+```
 
 ## Setup Instructions
 
