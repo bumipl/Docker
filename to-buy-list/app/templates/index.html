@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Zakupów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center; /* Center the heading */
+        }
+        form {
+            margin-bottom: 20px;
+            text-align: center; /* Center the form */
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the list items */
+        }
+        li {
+            background: white;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align items to the start */
+            width: 300px; /* Set a fixed width for list items */
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista Zakupów</h1>
+    <form action="/add" method="post">
+        <input type="text" name="item" placeholder="Dodaj przedmiot" required>
+        <button type="submit">Dodaj</button>
+    </form>
+    <ul>
+        {% for item in shopping_list %}
+            <li>
+                <input type="checkbox" id="item-{{ item[0] }}" onchange="removeItem({{ item[0] }})">
+                <label for="item-{{ item[0] }}">{{ item[1] }}</label>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        function removeItem(itemId) {
+            fetch(`/remove/${itemId}`, { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();  // Reload the page to update the list
+                    } else {
+                        alert('An error occurred while removing the item.');
+                    }
+                });
+        }
+    </script>
+</body>
+</html>
